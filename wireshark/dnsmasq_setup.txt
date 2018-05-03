@@ -1,0 +1,24 @@
+======================
+Dnsmasq setup:
+======================
+sudo systemctl disable systemd-resolved
+sudo systemctl stop systemd-resolved
+
+Edit the /etc/resolv.conf file to contain the following entry:
+nameserver 8.8.8.8
+
+Now install dnsmasq
+sudo apt install dnsmasq
+
+uncomment these lines:
+port=53
+domain-needed
+bogus-priv
+no-resolv
+
+Add your domains below the no-resolv line:
+address=/r1.home.com/10.1.1.254
+address=/myrouter.home.com/10.1.1.254
+
+Set your public server to Google for example:
+server=8.8.8.8
